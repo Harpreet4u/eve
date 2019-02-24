@@ -66,6 +66,7 @@ app.on_post_GET_friends += post_friends_callback
 app.on_post_GET_favourite_food += post_favourite_food_callback
 app.on_insert_employees += employee_insert
 app.on_insert_companies += companies_insert
+
 @app.route('/favourite_food/<int:person>')
 def get_favourite_food(person):
     response = get('favourite_food', {'index': person})
