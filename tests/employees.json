@@ -1,0 +1,81 @@
+[
+{
+    "_id": "595eeb9bb3821d9982ea44f9",
+    "index": 0,
+    "guid": "53e2b104-869c-44c2-b200-7f14b403bd89",
+    "has_died": true,
+    "balance": "$2,128.61",
+    "picture": "http://placehold.it/32x32",
+    "age": 28,
+    "eyeColor": "brown",
+    "name": "Barrett Lambert",
+    "gender": "male",
+    "company_id": 1,
+    "email": "barrettlambert@earthmark.com",
+    "phone": "+1 (810) 488-2604",
+    "address": "618 Sumner Place, Sperryville, Minnesota, 4964",
+    "about": "Ut laboris et aliqua est laboris tempor. Non qui ipsum consectetur ex aliquip deserunt velit consectetur cupidatat consectetur nulla magna. Occaecat duis aliquip consectetur amet enim cillum enim laboris commodo culpa Lorem elit. Aliquip est qui aliquip laborum incididunt eu. Nostrud occaecat ad qui ea reprehenderit aute eu exercitation. Exercitation non pariatur ex sint voluptate deserunt.\r\n",
+    "registered": "2015-05-02T03:11:16 -10:00",
+    "tags": [
+      "cupidatat",
+      "id",
+      "anim",
+      "tempor",
+      "commodo",
+      "nulla",
+      "eu"
+    ],
+    "friends": [
+      {
+        "index": 1
+      }
+
+    ],   
+    "greeting": "Hello, Barrett Lambert! You have 1 unread messages.",
+    "favouriteFood": [
+      "orange",
+      "apple",
+      "carrot",
+      "strawberry"
+    ]
+  },
+{
+    "_id": "595eeb9b1e0d8942524c98ad",
+    "index": 1,
+    "guid": "53e2b104-869c-44c2-b200-7f14b403bd89",
+    "has_died": true,
+    "balance": "$2,128.61",
+    "picture": "http://placehold.it/32x32",
+    "age": 28,
+    "eyeColor": "brown",
+    "name": "Barrett Lambert",
+    "gender": "male",
+    "company_id": 2,
+    "email": "barrettlambert@earthmark.com",
+    "phone": "+1 (810) 488-2604",
+    "address": "618 Sumner Place, Sperryville, Minnesota, 4964",
+    "about": "Ut laboris et aliqua est laboris tempor. Non qui ipsum consectetur ex aliquip deserunt velit consectetur cupidatat consectetur nulla magna. Occaecat duis aliquip consectetur amet enim cillum enim laboris commodo culpa Lorem elit. Aliquip est qui aliquip laborum incididunt eu. Nostrud occaecat ad qui ea reprehenderit aute eu exercitation. Exercitation non pariatur ex sint voluptate deserunt.\r\n",
+    "registered": "2015-05-02T03:11:16 -10:00",
+    "tags": [
+      "cupidatat",
+      "id",
+      "anim",
+      "tempor",
+      "commodo",
+      "nulla",
+      "eu"
+    ],
+    "friends": [
+      {
+        "index": 0
+      }
+    ],
+    "greeting": "Hello, Barrett Lambert! You have 1 unread messages.",
+    "favouriteFood": [
+      "orange",
+      "apple",
+      "carrot",
+      "strawberry"
+    ]
+  }
+]

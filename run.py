@@ -1,4 +1,5 @@
 import json
+import os
 from eve import Eve
 from eve.methods.get import get
 from eve.render import send_response
@@ -25,7 +26,8 @@ app.config['SWAGGER_INFO'] = {
 }
 
 def employee_insert(items):
-    with open('fruits.json', 'r') as fruit_list:
+    path = os.path.join(os.path.dirname(__file__), 'fruits.json')
+    with open(path, 'r') as fruit_list:
         fruits = json.loads(fruit_list.read())
         for item in items:
             item['fruits'] = list(filter(lambda x: x in fruits, item['favouriteFood']))
