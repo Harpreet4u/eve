@@ -3,7 +3,26 @@ from eve import Eve
 from eve.methods.get import get
 from eve.render import send_response
 from flask import abort
+from eve_swagger import swagger, add_documentation
+
 app = Eve()
+app.register_blueprint(swagger)
+
+app.config['SWAGGER_INFO'] = {
+    'title': 'First ever Eve API',
+    'version': '1.0',
+    'description': 'Backend coding challenge api written in python eve',
+    'termsOfService': 'No terms',
+    'contact': {
+        'name': 'Harpreet',
+        'url': 'https://au.linkedin.com/in/harpreet-singh-789aa35a',
+    },
+    'license': {
+        'name': 'BSD',
+        'url': 'https://github.com/pyeve/eve-swagger/blob/master/LICENSE'
+    },
+    'schemes': ['http', 'https']
+}
 
 def employee_insert(items):
     with open('fruits.json', 'r') as fruit_list:
@@ -16,15 +35,6 @@ def companies_insert(items):
     for item in items:
         item['index'] = item['index'] + 1
 
-def pre_get_employees_get_callback(request, lookup):
-    pass
-    
-    """db = app.data.driver.db
-    company = db['companies'].find_one({"company": request.view_args['company_id']})
-    if db['companies'].count_documents({"company": request.view_args['company_id']}) > 0:
-        request.view_args['company_id'] = int(company['index'])
-        lookup['company_id'] = int(company['index'])
-    """
 def post_favourite_food_callback(request, payload):
     result = json.loads(payload.response[0])
     username = result['_items'][0]['name']
@@ -52,7 +62,6 @@ def post_friends_callback(request, payload):
     del result['_items'][1]['eyeColor']
     payload.response[0] = json.dumps(result)
 
-app.on_pre_GET_get_employees += pre_get_employees_get_callback
 app.on_post_GET_friends += post_friends_callback
 app.on_post_GET_favourite_food += post_favourite_food_callback
 app.on_insert_employees += employee_insert
