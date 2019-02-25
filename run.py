@@ -47,10 +47,13 @@ def post_friends_callback(request, payload):
     result = json.loads(payload.response[0])
     friends_first = result['_items'][0]['friends']
     friends_second = result['_items'][1]['friends']
-    friends_first.extend(friends_second)
-    common_friends = set([])
+    friends_first_indexes = set([])
+    friends_second_indexes = set([])
     for friend in friends_first:
-        common_friends.add(friend['index'])
+        friends_first_indexes.add(friend['index'])
+    for friend in friends_second:
+        friends_second_indexes.add(friend['index'])
+    common_friends = friends_first_indexes & friends_second_indexes
     db = app.data.driver.db
     alive_friends_with_brown_eyes = db['employees'].find({'index': {'$in': list(common_friends)}, 'eyeColor': 'brown', 'has_died': False})
     common_friends = []

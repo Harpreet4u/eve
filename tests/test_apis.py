@@ -115,3 +115,35 @@ class TestCompanyEmployeesAPI(TestMinimal):
         del response['_items'][0]['registered']
         del self.employees[0]['registered']
         self.assertDictEqual(response['_items'][0], self.employees[0]) 
+
+class TestEmployeesWithMutualBrownEyesAliveFriendsAPI(TestMinimal):
+    
+    def setUp(self, url_converters=None):
+        self.test_client = app.test_client()
+        path = os.path.join(os.path.dirname(__file__), 'employees.json')
+        with open(path, 'r') as emp_data:
+            self.employees = json.loads(emp_data.read())
+        super(TestEmployeesWithMutualBrownEyesAliveFriendsAPI, self).setUp(url_converters=url_converters)
+        self.maxDiff = None
+
+    def bulk_insert(self):
+        _db = self.connection[MONGO_DBNAME]
+        _db.companies.insert_one({'index': 1, 'company': "ABC"})
+        _db.companies.insert_one({'index': 2, 'company': "DEF"})
+        self.post('employees', data=self.employees[0])
+        self.post('employees', data=self.employees[1])
+        self.post('employees', data=self.employees[2])
+    
+    def test_common_alive_friends_with_brown_eyes_get_call(self):
+        response = app.test_client().get('/friends/common/1/2')
+        self.assert200(response.status_code)
+        response, _ = self.parse_response(response)
+        del response['_items'][0]['_created']
+        del response['_items'][0]['_updated']
+        del response['_items'][0]['_etag']
+        del response['_items'][0]['_links']
+        del self.employees[0]['registered']
+        self.assertDictEqual(response['_items'][0]['friends'][0], {'index': 0}) 
+        self.assertDictEqual(response['_items'][1]['friends'][0], {'index': 0}) 
+        self.assertEquals(len(response['_items'][1]['friends']), 1) 
+        self.assertEquals(len(response['_items'][0]['friends']), 1) 
