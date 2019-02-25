@@ -1,0 +1,487 @@
+swagger: '2.0'
+info:
+  title: First ever Eve API
+  description: Backend coding challenge api written in python eve
+  termsOfService: No terms
+  contact:
+    name: Harpreet
+    url: 'https://au.linkedin.com/in/harpreet-singh-789aa35a'
+  license:
+    name: BSD
+    url: 'https://github.com/pyeve/eve-swagger/blob/master/LICENSE'
+  version: '1.0'
+host: 'localhost:5000'
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/xml
+  - application/json
+paths:
+  /companies:
+    get:
+      summary: Retrieves one or more companies
+      responses:
+        '200':
+          description: An array of companies
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/companies'
+      tags:
+        - companies
+    post:
+      summary: Stores one or more companies
+      parameters:
+        - in: body
+          name: companies
+          required: true
+          schema:
+            $ref: '#/definitions/companies'
+      responses:
+        '201':
+          description: operation has been successful
+      tags:
+        - companies
+    delete:
+      summary: Deletes all companies
+      responses:
+        '204':
+          description: operation has been successful
+      tags:
+        - companies
+  '/companies/{companiesId}':
+    get:
+      summary: Retrieves a companies document
+      responses:
+        '200':
+          description: companies document fetched successfully
+          schema:
+            $ref: '#/definitions/companies'
+      parameters:
+        - $ref: '#/parameters/companies__id'
+      tags:
+        - companies
+  /employees:
+    get:
+      summary: Retrieves one or more employees
+      responses:
+        '200':
+          description: An array of employees
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/employees'
+      tags:
+        - employees
+    post:
+      summary: Stores one or more employees
+      parameters:
+        - in: body
+          name: employees
+          required: true
+          schema:
+            $ref: '#/definitions/employees'
+      responses:
+        '201':
+          description: operation has been successful
+      tags:
+        - employees
+    delete:
+      summary: Deletes all employees
+      responses:
+        '204':
+          description: operation has been successful
+      tags:
+        - employees
+  '/employees/{employeesId}':
+    get:
+      summary: Retrieves a employees document
+      responses:
+        '200':
+          description: employees document fetched successfully
+          schema:
+            $ref: '#/definitions/employees'
+      parameters:
+        - $ref: '#/parameters/employees__id'
+      tags:
+        - employees
+  '/get_company_employees/{companyIndexId}':
+    get:
+      summary: 'Retrieves one or more get_company_employees/<int:company_id>'
+      responses:
+        '200':
+          description: 'An array of get_company_employees/<int:company_id>'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Get_employee'
+      parameters:
+        - $ref: '#/parameters/company_index_id'
+      tags:
+        - Get_employee
+  '/get_company_employees/{companyName}/':
+    get:
+      summary: 'Retrieves one or more get_company_employees/<string:company_name>'
+      responses:
+        '200':
+          description: 'An array of get_company_employees/<string:company_name>'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Get_employee'
+      parameters:
+        - $ref: '#/parameters/company_name'
+      tags:
+        - Get_employee
+  '/friends/common/{personId}/{anotherPersonId}':
+    get:
+      summary: Retrieves a Friend document
+      responses:
+        '200':
+          description: Friend document fetched successfully
+          schema:
+            $ref: '#/definitions/Friend'
+      parameters:
+        - $ref: '#/parameters/personId'
+        - $ref: '#/parameters/anotherPersonId'
+      tags:
+        - Friend
+  '/favourite_food/{personId}':
+    get:
+      summary: Retrieves a Favourite_food document
+      responses:
+        '200':
+          description: Favourite_food document fetched successfully
+          schema:
+            $ref: '#/definitions/Favourite_food'
+      parameters:
+        - $ref: '#/parameters/personId'
+      tags:
+        - Favourite_food
+definitions:
+  companies:
+    type: object
+    properties:
+      index:
+        $ref: '#/definitions/companies_index'
+      company:
+        type: string
+    required:
+      - index
+  employees:
+    type: object
+    properties:
+      index:
+        type: integer
+      guid:
+        type: string
+      has_died:
+        type: boolean
+      balance:
+        type: string
+      picture:
+        type: string
+      age:
+        type: integer
+      eyeColor:
+        type: string
+      name:
+        type: string
+      gender:
+        type: string
+      company_id:
+        $ref: '#/definitions/companies_index'
+      email:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      about:
+        type: string
+      registered:
+        type: string
+        format: date-time
+      tags:
+        type: array
+        items:
+          type: string
+      friends:
+        type: array
+        items:
+          type: object
+          properties:
+            index:
+              type: integer
+      greeting:
+        type: string
+      favouriteFood:
+        type: array
+        items:
+          type: string
+      fruits:
+        type: array
+        items:
+          type: string
+      vegetables:
+        type: array
+        items:
+          type: string
+      _id:
+        type: string
+        format: objectid
+    required:
+      - index
+  Get_employee:
+    type: object
+    properties:
+      index:
+        type: integer
+      guid:
+        type: string
+      has_died:
+        type: boolean
+      balance:
+        type: string
+      picture:
+        type: string
+      age:
+        type: integer
+      eyeColor:
+        type: string
+      name:
+        type: string
+      gender:
+        type: string
+      company_id:
+        $ref: '#/definitions/companies_index'
+      email:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      about:
+        type: string
+      registered:
+        type: string
+        format: date-time
+      tags:
+        type: array
+        items:
+          type: string
+      friends:
+        type: array
+        items:
+          type: object
+          properties:
+            index:
+              type: integer
+      greeting:
+        type: string
+      favouriteFood:
+        type: array
+        items:
+          type: string
+      fruits:
+        type: array
+        items:
+          type: string
+      vegetables:
+        type: array
+        items:
+          type: string
+      _id:
+        type: string
+        format: objectid
+    required:
+      - index
+  Friend:
+    type: object
+    properties:
+      index:
+        type: integer
+      guid:
+        type: string
+      has_died:
+        type: boolean
+      balance:
+        type: string
+      picture:
+        type: string
+      age:
+        type: integer
+      eyeColor:
+        type: string
+      name:
+        type: string
+      gender:
+        type: string
+      company_id:
+        $ref: '#/definitions/companies_index'
+      email:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      about:
+        type: string
+      registered:
+        type: string
+        format: date-time
+      tags:
+        type: array
+        items:
+          type: string
+      friends:
+        type: array
+        items:
+          type: object
+          properties:
+            index:
+              type: integer
+      greeting:
+        type: string
+      favouriteFood:
+        type: array
+        items:
+          type: string
+      fruits:
+        type: array
+        items:
+          type: string
+      vegetables:
+        type: array
+        items:
+          type: string
+      _id:
+        type: string
+        format: objectid
+    required:
+      - index
+  Favourite_food:
+    type: object
+    properties:
+      index:
+        type: integer
+      guid:
+        type: string
+      has_died:
+        type: boolean
+      balance:
+        type: string
+      picture:
+        type: string
+      age:
+        type: integer
+      eyeColor:
+        type: string
+      name:
+        type: string
+      gender:
+        type: string
+      company_id:
+        $ref: '#/definitions/companies_index'
+      email:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      about:
+        type: string
+      registered:
+        type: string
+        format: date-time
+      tags:
+        type: array
+        items:
+          type: string
+      friends:
+        type: array
+        items:
+          type: object
+          properties:
+            index:
+              type: integer
+      greeting:
+        type: string
+      favouriteFood:
+        type: array
+        items:
+          type: string
+      fruits:
+        type: array
+        items:
+          type: string
+      vegetables:
+        type: array
+        items:
+          type: string
+      _id:
+        type: string
+        format: objectid
+    required:
+      - index
+  companies_index:
+    type: integer
+parameters:
+  company_index_id:
+    in: path
+    name: companyIndexId
+    required: true
+    type: integer
+  company_name:
+    in: path
+    name: companyName
+    required: true
+    type: string
+  companies__id:
+    in: path
+    name: companiesId
+    required: true
+    description: ''
+    type: string
+  
+  employees__id:
+    in: path
+    name: employeesId
+    required: true
+    description: ''
+    type: string
+  Get_employee__id:
+    in: path
+    name: get_employeeId
+    required: true
+    description: ''
+    type: string
+    format: objectid
+  personId:
+    in: path
+    name: personId
+    required: true
+    description: ''
+    type: integer
+  anotherPersonId:
+    in: path
+    name: anotherPersonId
+    required: true
+    description: ''
+    type: integer
+  Favourite_food__id:
+    in: path
+    name: favourite_foodId
+    required: true
+    description: ''
+    type: string
+    format: objectid
+tags:
+  - name: companies
+  - name: employees
+  - name: Get_employee
+  - name: Friend
+  - name: Favourite_food
