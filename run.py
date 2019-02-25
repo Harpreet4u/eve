@@ -42,6 +42,9 @@ def post_favourite_food_callback(request, payload):
     username = result['_items'][0]['name']
     del result['_items'][0]['name']
     result['_items'][0]['username'] = username
+    data_dump = json.dumps(result)
+    payload.response[0] = data_dump
+    payload.headers[1] = ('Content-Length', str(len(data_dump)))
 
 def post_friends_callback(request, payload):
     result = json.loads(payload.response[0])
@@ -65,7 +68,9 @@ def post_friends_callback(request, payload):
     del result['_items'][1]['has_died']
     del result['_items'][0]['eyeColor']
     del result['_items'][1]['eyeColor']
-    payload.response[0] = json.dumps(result)
+    dump_data = json.dumps(result)
+    payload.response[0] = dump_data
+    payload.headers[1] = ('Content-Length', str(len(dump_data)))
 
 app.on_post_GET_friends += post_friends_callback
 app.on_post_GET_favourite_food += post_favourite_food_callback
