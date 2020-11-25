@@ -3,7 +3,7 @@ Python eve Rest API
 
 # Prerequisities:
   - Python3
-  - python eve
+  - python  eve
   - mongodb
   
 # Installation instrustions:
